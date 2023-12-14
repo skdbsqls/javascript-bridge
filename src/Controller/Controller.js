@@ -1,10 +1,9 @@
 const InputView = require("../View/InputView");
 const OutputView = require("../View/OutputView");
+const BridgeGame = require("../Model/BridgeGame");
 
 class Controller {
-  #size;
-
-  #move;
+  #bridgeGame;
 
   run() {
     this.startGame();
@@ -16,9 +15,9 @@ class Controller {
     this.#size = InputView.readBridgeSize(this.playGame());
   }
 
-  // 게임 진행
-  playGame() {
-    this.#move = InputView.readMoving();
+  // 다리 생성
+  setBridge(size) {
+    this.#bridgeGame = new BridgeGame();
   }
 }
 
