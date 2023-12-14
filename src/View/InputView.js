@@ -1,26 +1,31 @@
-const Size = require("../Model/Size");
+const Size = require("../util/Size");
+const Move = require("../util/Move");
 const { Console } = require("@woowacourse/mission-utils");
 const { INPUT_MESSAGE } = require("../constants/message");
 
 const InputView = {
   // 다리의 길이 입력
-  readBridgeSize() {
+  readBridgeSize(callback) {
     Console.readLine(INPUT_MESSAGE.size, (input) => {
       try {
         return new Size(input).getSize();
       } catch (error) {
         Console.print(error.message);
-        return this.readBridgeSize();
+        return this.readBridgeSize(callback);
       }
     });
   },
 
-  /**
-   * 사용자가 이동할 칸을 입력받는다.
-   */
+  // 사용자가 이동할 칸을 입력받는다.
   readMoving() {
-    const move = Console.readLine(INPUT_MESSAGE.move);
-    return move;
+    Console.readLine(INPUT_MESSAGE.move, (input) => {
+      try {
+        return new Move(input).getMove();
+      } catch (error) {
+        Console.print(error.message);
+        return this.readMoving();
+      }
+    });
   },
 
   /**

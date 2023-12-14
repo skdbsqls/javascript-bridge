@@ -1,4 +1,4 @@
-const Validate = require("../util/validation/Validate");
+const Validate = require("./validation/Validate");
 
 class Size {
   #size;
@@ -8,13 +8,12 @@ class Size {
     this.#size = input;
   }
 
-  // 예외 처리
   #validate(input) {
     Validate.SizeValidate(input);
   }
 
   getSize() {
-    return this.#size;
+    return Number(this.#size);
   }
 }
 

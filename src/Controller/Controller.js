@@ -1,25 +1,25 @@
 const InputView = require("../View/InputView");
 const OutputView = require("../View/OutputView");
-const { Console } = require("@woowacourse/mission-utils");
 
 class Controller {
   #size;
 
+  #move;
+
   run() {
-    this.gameStart();
+    this.startGame();
   }
 
   // 게임 시작
-  gameStart() {
+  startGame() {
     OutputView.printStart();
-    this.#size = InputView.readBridgeSize();
+    this.#size = InputView.readBridgeSize(this.playGame());
   }
 
-  // 출력
-  //   #executePrint() {
-  //     OutputView.printOutput();
-  //     OutputView.printName(this.#name);
-  //   }
+  // 게임 진행
+  playGame() {
+    this.#move = InputView.readMoving();
+  }
 }
 
 module.exports = Controller;
