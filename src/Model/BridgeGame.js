@@ -51,7 +51,7 @@ class BridgeGame {
       this.#downSide.push("O");
       return this.successGame();
     } else {
-      this.#upSide.push("X");
+      this.#downSide.push("X");
       return this.#result;
     }
   }

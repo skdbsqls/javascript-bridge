@@ -44,6 +44,9 @@ class Controller {
       // 종료
     }
   }
+
+  // 게임 재시작
+  reStartGame() {}
 }
 
 module.exports = Controller;

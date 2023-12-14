@@ -1,5 +1,6 @@
 const Size = require("../util/Size");
 const Move = require("../util/Move");
+const Command = require("../util/Command");
 const { Console } = require("@woowacourse/mission-utils");
 const { INPUT_MESSAGE } = require("../constants/message");
 
@@ -30,13 +31,18 @@ const InputView = {
     });
   },
 
-  /**
-   * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-   */
-  readGameCommand() {
-    const command = Console.readLine(INPUT_MESSAGE.command);
-    return command;
-  },
+  // 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+  // readGameCommand(moveStep) {
+  //   Console.readLine(INPUT_MESSAGE.move, (input) => {
+  //     try {
+  //       const command = new Command(input).getCommand();
+  //       moveStep(command);
+  //     } catch (error) {
+  //       Console.print(error.message);
+  //       return this.readMoving(moveStep);
+  //     }
+  //   });
+  // },
 };
 
 module.exports = InputView;
