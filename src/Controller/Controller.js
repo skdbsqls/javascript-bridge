@@ -34,19 +34,26 @@ class Controller {
   }
 
   nextStep(result) {
-    if (result.status === true && result.success === false) {
+    if (result.status === true && result.success === "실패") {
       this.playGame();
     }
-    if (result.status === false && result.success === false) {
-      // 재시작 여부
+    if (result.status === false && result.success === "실패") {
+      InputView.readGameCommand(this.endGame.bind(this));
     }
-    if (result.status === false && result.success === false) {
-      // 종료
+    if (result.status === true && result.success === "성공") {
+      OutputView.printResult(this.#bridgeGame);
     }
   }
 
-  // 게임 재시작
-  reStartGame() {}
+  // 게임 종료
+  endGame(command) {
+    if (command === "R") {
+      this.#bridgeGame.retry(this.playGame.bind(this));
+    }
+    if (command === "Q") {
+      OutputView.printResult(this.#bridgeGame);
+    }
+  }
 }
 
 module.exports = Controller;

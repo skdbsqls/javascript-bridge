@@ -18,7 +18,7 @@ class BridgeGame {
     this.#step = 0;
     this.#upSide = [];
     this.#downSide = [];
-    this.#result = { status: false, success: false };
+    this.#result = { status: false, success: "실패" };
     this.#count = 1;
   }
   // 사용자가 칸을 이동할 때 사용하는 메서드
@@ -41,6 +41,8 @@ class BridgeGame {
       return this.successGame();
     } else {
       this.#upSide.push("X");
+      this.#result.status = false;
+      this.#result.success = "실패";
       return this.#result;
     }
   }
@@ -52,6 +54,8 @@ class BridgeGame {
       return this.successGame();
     } else {
       this.#downSide.push("X");
+      this.#result.status = false;
+      this.#result.success = "실패";
       return this.#result;
     }
   }
@@ -60,11 +64,11 @@ class BridgeGame {
   successGame() {
     if (this.#bridge.length === this.#step) {
       this.#result.status = true;
-      this.#result.success = true;
+      this.#result.success = "성공";
       return this.#result;
     } else {
       this.#result.status = true;
-      this.#result.success = false;
+      this.#result.success = "실패";
       return this.#result;
     }
   }
@@ -80,16 +84,17 @@ class BridgeGame {
   }
 
   // 게임 결과 구하기
-  getSuccess() {
+  getResult() {
     return this.#result;
   }
 
   // 사용자가 게임을 다시 시도할 때 사용하는 메서드
-  retry() {
+  retry(playGame) {
     this.#step = 0;
     this.#count += 1;
     this.#upSide = [];
     this.#downSide = [];
+    playGame();
   }
 
   // 시도 횟수 구하기

@@ -32,17 +32,17 @@ const InputView = {
   },
 
   // 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-  // readGameCommand(moveStep) {
-  //   Console.readLine(INPUT_MESSAGE.move, (input) => {
-  //     try {
-  //       const command = new Command(input).getCommand();
-  //       moveStep(command);
-  //     } catch (error) {
-  //       Console.print(error.message);
-  //       return this.readMoving(moveStep);
-  //     }
-  //   });
-  // },
+  readGameCommand(endGame) {
+    Console.readLine(INPUT_MESSAGE.command, (input) => {
+      try {
+        const command = new Command(input).getCommand();
+        endGame(command);
+      } catch (error) {
+        Console.print(error.message);
+        return this.readMoving(endGame);
+      }
+    });
+  },
 };
 
 module.exports = InputView;

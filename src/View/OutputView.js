@@ -18,7 +18,12 @@ const OutputView = {
   },
 
   // 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-  printResult() {},
+  printResult(bridgeGame) {
+    Console.print(OUTPUT_MESSAGE.end);
+    this.printMap(bridgeGame);
+    Console.print(OUTPUT_MESSAGE.success(bridgeGame.getResult().success));
+    Console.print(OUTPUT_MESSAGE.count(bridgeGame.getCount()));
+  },
 };
 
 module.exports = OutputView;
