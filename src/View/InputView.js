@@ -5,25 +5,27 @@ const { INPUT_MESSAGE } = require("../constants/message");
 
 const InputView = {
   // 다리의 길이 입력
-  readBridgeSize(callback) {
+  readBridgeSize(setBridge) {
     Console.readLine(INPUT_MESSAGE.size, (input) => {
       try {
-        return new Size(input).getSize();
+        const size = new Size(input).getSize();
+        setBridge(size);
       } catch (error) {
         Console.print(error.message);
-        return this.readBridgeSize(callback);
+        return this.readBridgeSize(setBridge);
       }
     });
   },
 
   // 사용자가 이동할 칸을 입력받는다.
-  readMoving() {
+  readMoving(moveStep) {
     Console.readLine(INPUT_MESSAGE.move, (input) => {
       try {
-        return new Move(input).getMove();
+        const move = new Move(input).getMove();
+        moveStep(move);
       } catch (error) {
         Console.print(error.message);
-        return this.readMoving();
+        return this.readMoving(moveStep);
       }
     });
   },

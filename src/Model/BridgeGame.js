@@ -8,7 +8,6 @@ class BridgeGame {
   #upSide;
   #downSide;
   #result;
-  #success;
   #count;
 
   constructor(size) {
@@ -19,17 +18,18 @@ class BridgeGame {
     this.#step = 0;
     this.#upSide = [];
     this.#downSide = [];
-    this.#result = Boolean;
-    this.#success = Boolean;
+    this.#result = { status: false, success: false };
     this.#count = 1;
   }
   // 사용자가 칸을 이동할 때 사용하는 메서드
   move(move) {
     this.#step += 1;
     if (move === "U") {
+      this.#downSide.push(" ");
       return this.moveUpSide();
     }
     if (move === "D") {
+      this.#upSide.push(" ");
       return this.moveDownSide();
     }
   }
@@ -37,46 +37,51 @@ class BridgeGame {
   // 정답이 위인 경우
   moveUpSide() {
     if (this.#bridge[this.#step - 1] === "U") {
-      this.#upSide.push(" O");
-      this.#result = true;
+      this.#upSide.push("O");
       return this.successGame();
     } else {
-      this.#downSide.push(" X");
-      this.#result = false;
+      this.#upSide.push("X");
+      return this.#result;
     }
   }
 
   // 정답이 아래인 경우
   moveDownSide() {
     if (this.#bridge[this.#step - 1] === "D") {
-      this.#downSide.push(" O");
-      this.#result = true;
+      this.#downSide.push("O");
       return this.successGame();
     } else {
-      this.#upSide.push(" X");
-      this.#result = false;
-      return this.successGame();
+      this.#upSide.push("X");
+      return this.#result;
     }
   }
 
   // 게임 종료 여부
   successGame() {
     if (this.#bridge.length === this.#step) {
-      this.#result === true ? (this.#success = true) : (this.#success = false);
-    } else this.#success = false;
+      this.#result.status = true;
+      this.#result.success = true;
+      return this.#result;
+    } else {
+      this.#result.status = true;
+      this.#result.success = false;
+      return this.#result;
+    }
   }
 
   // side 구하기
-  getUpSide() {
-    return this.#upSide;
-  }
-  getDownSide() {
-    return this.#downSide;
+  getSide(side) {
+    if (side === "U") {
+      return this.#upSide;
+    }
+    if (side === "D") {
+      return this.#downSide;
+    }
   }
 
-  // 성공 여부 구하기
+  // 게임 결과 구하기
   getSuccess() {
-    return this.#success;
+    return this.#result;
   }
 
   // 사용자가 게임을 다시 시도할 때 사용하는 메서드
