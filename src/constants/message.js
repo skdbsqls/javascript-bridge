@@ -18,4 +18,4 @@ const ERROR_MESSAGE = Object.freeze({
   invalidCommand: "[ERROR] 재시작 여부는 R과 Q 중 하나의 문자로 입력해 주세요.",
 });
 
-export { INPUT_MESSAGE, OUTPUT_MESSAGE, ERROR_MESSAGE };
+module.exports = { INPUT_MESSAGE, OUTPUT_MESSAGE, ERROR_MESSAGE };

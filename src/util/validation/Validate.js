@@ -1,9 +1,9 @@
-import { ERROR_MESSAGE } from "../../constants/message.js";
+const { ERROR_MESSAGE } = require("../../constants/message");
 
 const Validate = {
   SizeValidate(input) {
     Check.checkNumber(input);
-    Check, checkSize(input);
+    Check.checkSize(input);
   },
   MoveValidate(input) {
     Check.checkMove(input);
@@ -36,4 +36,4 @@ const Check = {
   },
 };
 
-export default Validate;
+module.exports = Validate;
