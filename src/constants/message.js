@@ -13,9 +13,9 @@ const OUTPUT_MESSAGE = Object.freeze({
 
 const ERROR_MESSAGE = Object.freeze({
   onlyNumber: "[ERROR] 다리 길이는 숫자로 입력해 주세요.",
-  invalidLength: "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.",
+  invalidSize: "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.",
   invalidMove: "[ERROR] 이동할 칸은 U와 D 중 하나의 문자로 입력해 주세요.",
-  invalidRestart: "[ERROR] 재시작 여부는 R과 Q 중 하나의 문자로 입력해 주세요.",
+  invalidCommand: "[ERROR] 재시작 여부는 R과 Q 중 하나의 문자로 입력해 주세요.",
 });
 
 export { INPUT_MESSAGE, OUTPUT_MESSAGE, ERROR_MESSAGE };
